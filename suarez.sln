@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "practicaml", "practicaml.csproj", "{08AC5BAF-DF1D-8D80-7287-831A19B119DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "suarez", "suarez.csproj", "{08AC5BAF-DF1D-8D80-7287-831A19B119DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,18 +1,24 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+# Etapa 1: Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-COPY *.csproj ./
+# Copiar solo el archivo del proyecto
+COPY suarez.csproj ./
 RUN dotnet restore
 
+# Copiar el resto del contenido
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o /app/out
 
+# Etapa 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build-env /app/out .
 
-#CAMBIAR AQUI EL NOMBRE DEL APLICATIVO
-#nombre de tu app busca en bin\Release****\netcore5.0\plantitas.exe
-ENV APP_NET_CORE practicaml.dll 
+# Copiar el resultado del build
+COPY --from=build /app/out .
 
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet $APP_NET_CORE
+# Render usará el puerto indicado en la variable de entorno $PORT
+ENV ASPNETCORE_URLS=http://+:$PORT
+
+# Ejecutar la app principal (suarez.dll)
+ENTRYPOINT ["dotnet", "suarez.dll"]
