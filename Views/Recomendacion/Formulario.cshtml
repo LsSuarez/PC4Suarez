@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Recomendación de Productos";
+    var usuarios = ViewBag.Usuarios as List<practicaml.Models.Usuario>;
+    var recomendaciones = ViewBag.Recomendaciones as List<(practicaml.Models.Producto producto, float score)>;
+    var usuarioSeleccionado = ViewBag.UsuarioSeleccionado as string;
+    var error = ViewBag.Error as string;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-gradient text-white text-center" style="background: linear-gradient(to right, #f39c12, #d35400);">
+                    <h4 class="fw-bold mb-0">📦 Recomendación de Productos</h4>
+                </div>
+
+                <div class="card-body bg-light">
+                    <form asp-action="Predecir" method="post" class="mb-4">
+                        <div class="mb-3">
+                            <label for="userId" class="form-label">👤 Selecciona un usuario:</label>
+                            <select id="userId" name="userId" class="form-select" required>
+                                <option value="">-- Seleccione --</option>
+                                @foreach (var user in usuarios)
+                                {
+                                    if (usuarioSeleccionado == user.Nombre)
+                                    {
+                                        <option value="@user.UserId" selected>@user.Nombre</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@user.UserId">@user.Nombre</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning fw-bold w-100">🔎 Obtener recomendaciones</button>
+                    </form>
+
+                    @if (!string.IsNullOrEmpty(error))
+                    {
+                        <div class="alert alert-danger text-center">
+                            @error
+                        </div>
+                    }
+
+                    @if (recomendaciones != null && recomendaciones.Any())
+                    {
+                        <h5 class="text-success text-center mb-3">🎁 Recomendaciones para <strong>@usuarioSeleccionado</strong>:</h5>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var rec in recomendaciones)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>📌 <strong>@rec.producto.Nombre</strong></span>
+                                    <span class="badge bg-success rounded-pill">Score: @rec.score.ToString("F2")</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
