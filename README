@@ -1,0 +1,50 @@
+# 🛍️ SUAREZ ECOMMERCE PC4
+
+Este es un proyecto de e-commerce desarrollado como parte de la **Práctica Calificada 4** (PC4) con integración de modelos de Machine Learning usando **ML.NET**, desplegado con **Docker** en **Render.com**.
+
+---
+
+## 📦 Funcionalidades principales
+
+- ✨ Clasificación de sentimiento de opiniones de usuarios (modelo ML.NET)
+- 🧠 Sistema de recomendación de productos personalizado
+- 🔐 Registro y autenticación de usuarios con ASP.NET Identity
+- 🐳 Contenedor Docker listo para producción
+- ☁️ Despliegue en Render con PostgreSQL
+
+---
+
+## 🧠 Machine Learning integrado
+
+### 🔹 Clasificación de Sentimiento
+- Entrenado con ML.NET
+- Predice si una opinión es Positiva o Negativa
+
+### 🔹 Recomendación de Productos
+- Basado en historial de usuarios
+- Implementación personalizada de filtrado colaborativo
+
+---
+
+## 🛠️ Tecnologías Usadas
+
+| Tecnología     | Uso                             |
+|----------------|----------------------------------|
+| ASP.NET Core   | Backend MVC                     |
+| ML.NET         | Modelos de ML                   |
+| Bootstrap 5    | Estilos responsive y modernos   |
+| Docker         | Contenedor para despliegue      |
+| PostgreSQL     | Base de datos en producción     |
+| SQLite         | Base de datos local              |
+| GitHub         | Control de versiones             |
+
+---
+
+## 🐳 Cómo ejecutar con Docker
+
+```bash
+# Construir imagen
+docker build -t suarez-ml-ecommerce .
+
+# Ejecutar en local
+docker run -p 5000:80 suarez-ml-ecommerce
